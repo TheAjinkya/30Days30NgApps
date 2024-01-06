@@ -1,0 +1,26 @@
+
+<label>Enter the task:</label>
+<input #taskValue name="name" type="text" [(ngModel)]="task" (keyup.enter)="addTask(task)" />
+<button (click)="addTask(task)">Add</button>
+{{taskValue.value}}
+
+<hr />
+MyName: {{myName}}
+<hr/>
+<div *ngIf="expactDetails; then thenBlock else elseBlock">
+    Contact Details
+</div>
+<ng-template #elseBlock>
+    Else Block is here
+</ng-template>
+<ng-template #thenBlock>
+    Then Block is here
+</ng-template>
+
+<hr/>
+<div *ngFor="let task of taskList">
+    <span ngClass={selectedItem}>
+        {{task}}
+    </span>
+    <button (click)="deleteTask(task)">Delete</button>
+</div>

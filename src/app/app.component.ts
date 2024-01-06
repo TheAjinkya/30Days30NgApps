@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngToDoApp';
+  isDisabled = true;
+  isStyled= true;
+  redHeading = "heading-red"
+  isItalic = true;
+  messageClasses = {
+    "heading-yellow": true,
+    "text-italic": true
+  }
+  messageStyles ={
+    "color": 'pink'
+  }
+
+  hightLightColor = 'blue'
+
+
 }
