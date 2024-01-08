@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,14 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(private dataService : DataService) {}
+
+  @Output() customEvent = new EventEmitter()
 
   @Input("name") myName : string =""
+  message:string = ""
+
+  users: any[]= []
 
   taskList:any[] = [];
   counter: number = 1;
@@ -22,6 +28,11 @@ export class DashboardComponent implements OnInit {
     console.log("changes", changes)
   }
 
+  sendMessage(param:string){
+    this.customEvent.emit(param)
+    console.log(param)
+  }
+
   addTask(taskName: any) {
     this.taskList.push(taskName);
     this.counter = this.counter + 1;
@@ -31,4 +42,12 @@ export class DashboardComponent implements OnInit {
   deleteTask(taskName:any){
     this.taskList = this.taskList.filter(task=>task !== taskName)
   }
+
+   getData(){
+    this.dataService.getUsersData().subscribe((response:any)=>{
+      console.log("response", response)
+      this.users = response
+    })
+   }  
+  
 }

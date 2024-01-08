@@ -1,6 +1,9 @@
-<input type="text" bind-disabled="isDisabled" value="hello"/>
+<!-- <input type="text" bind-disabled="isDisabled" value="hello"/>
+<hr/> -->
+Message received from Child: {{messageChild}}
 <hr/>
-<app-dashboard name="World"></app-dashboard>
+<!-- <app-dashboard (customEvent)="getDataFromChild($event)" name="World"></app-dashboard> -->
+<router-outlet></router-outlet>
 
   <!-- Enter your name: <input type="text" [(ngModel)]="name"> <hr/>
   Hello My name is: {{name}} -->

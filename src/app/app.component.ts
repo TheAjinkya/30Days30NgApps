@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngToDoApp';
+  messageChild = ""
   isDisabled = true;
   isStyled= true;
   redHeading = "heading-red"
@@ -20,6 +21,11 @@ export class AppComponent {
   }
 
   hightLightColor = 'blue'
+
+  getDataFromChild(e:any){
+    console.log("Message in Parent", e)
+    this.messageChild = e
+  }
 
 
 }
