@@ -1,69 +1,35 @@
-Message from the Parent: {{myName}}
-<hr/>
-
-<input type="text" [(ngModel)]="message"/>
-<button (click)="sendMessage(message)">Send Message to Parent</button> <br/>
-<button (click)="getData()">Get Data</button>
-<hr/>
-<label>Enter the task:</label>
-<input #taskValue name="name" type="text" [(ngModel)]="task" (keyup.enter)="addTask(task)" />
-<button (click)="addTask(task)">Add</button>
-{{taskValue.value}}
-
-
-<hr />
 <div class="container">
-    <div class="card">
-        <div class="card-header active">
-            Featured
-        </div>
-        <div class="card-body">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header active">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Enter the task:</label>
+                        <input class="form-control" #taskValue name="name" type="text" [(ngModel)]="task"
+                            (keyup.enter)="addTask(task)" />
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" (click)="addTask(task)">Add</button>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <div>
+                <div *ngIf="taskList.length>0" class="m-5">
+                    <div class="row m-2 border border-primary p-2" *ngFor="let task of taskList">
+                        <div class="col">
+                            {{task}}
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="col-md-2"></div>
     </div>
-
-    <div class="card text-bg-danger">
-        <div class="card-header">List of Users</div>
-        <div class="card-body">
-            <div *ngIf="users.length>0" class="card">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" *ngFor="let user of users">{{user.name}}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- <div *ngIf="expactDetails; then thenBlock else elseBlock">
-    Contact Details
-</div>
-<ng-template #elseBlock>
-    Else Block is here
-</ng-template>
-<ng-template #thenBlock>
-    Then Block is here
-</ng-template>
-
-<hr/> -->
-<!-- <div *ngFor="let task of taskList">
-    <span ngClass={selectedItem}>
-        {{task}}
-    </span>
-    <button (click)="deleteTask(task)">Delete</button>
-</div> -->
-
-<div *ngIf="taskList.length>0" class="card" style="width: 18rem;">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let task of taskList">{{task}} <button
-                (click)="deleteTask(task)">Delete</button>
-        </li>
-    </ul>
 </div>
