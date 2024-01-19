@@ -3,10 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewsComponent } from './news/news.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { CompletedTasksComponent } from './completed-tasks/completed-tasks.component';
+import { UnCompletedTasksComponent } from './un-completed-tasks/un-completed-tasks.component';
 
 const routes: Routes = [{path:'', component: DashboardComponent},
 {path:'news', component: NewsComponent},
-{path:'quiz', component: QuizComponent}];
+{path:'completed', component: CompletedTasksComponent},
+{path:'uncomplete', component: UnCompletedTasksComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

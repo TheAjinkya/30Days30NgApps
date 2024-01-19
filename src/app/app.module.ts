@@ -10,6 +10,8 @@ import { NewsComponent } from './news/news.component';
 import { ContactComponent } from './contact/contact.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CompletedTasksComponent } from './completed-tasks/completed-tasks.component';
+import { UnCompletedTasksComponent } from './un-completed-tasks/un-completed-tasks.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     NewsComponent,
     ContactComponent,
     QuizComponent,
-    NavbarComponent
+    NavbarComponent,
+    CompletedTasksComponent,
+    UnCompletedTasksComponent
   ],
   imports: [
     BrowserModule,
