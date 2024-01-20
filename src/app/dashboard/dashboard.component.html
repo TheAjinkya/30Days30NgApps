@@ -19,8 +19,9 @@
             </div>
             <div>
                 <div *ngIf="taskList.length>0" class="m-5">
-                    <div class="row m-2 border border-primary p-2" *ngFor="let task of taskList">
-                        <div class="col">
+                    <div (click)="completedTask(task)" class="row m-2 border border-primary p-2" *ngFor="let task of taskList">
+                        <div [ngClass]="getCustomCss(task)" class="col">
+                            <!-- <input type="checkbox"/> -->
                             {{task}}
                         </div>
                         <div class="col">
