@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { DataService } from './services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,25 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngToDoApp';
-  messageChild = ""
-  isDisabled = true;
-  isStyled= true;
-  redHeading = "heading-red"
-  isItalic = true;
-  messageClasses = {
-    "heading-yellow": true,
-    "text-italic": true
-  }
-  messageStyles ={
-    "color": 'pink'
-  }
-
-  hightLightColor = 'blue'
-
-  getDataFromChild(e:any){
-    console.log("Message in Parent", e)
-    this.messageChild = e
-  }
-
+  
+  
 
 }

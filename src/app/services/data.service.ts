@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from "@angular/common/http"
+import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/users';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+ private subject = new BehaviorSubject<any>([]);
 
-  customEvent = new Subject<any>()
+  sendCompletedTasks(tasks: any[]) {
+    console.log("tasks set: ", tasks)
+    this.subject.next(tasks);
+  }
 
-  getMessage(){
-    this.customEvent.next("Message Sent")
+  clearMessage() {
+    this.subject.next([]);
+  }
+
+  onTaskUpdated():Observable<any> {
+    return this.subject.asObservable();
   }
 
   // getUsersData(): Observable<User[]>{
   //  return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users")
   // }
 }
-
