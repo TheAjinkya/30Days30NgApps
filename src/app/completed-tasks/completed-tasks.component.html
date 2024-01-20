@@ -2,12 +2,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div>
-                <div *ngIf="updatedTasks.length>0" class="m-5">
-                    <div class="row m-2 border border-primary p-2" *ngFor="let task of updatedTasks">
-                        <div>
-                            {{task}} 
+        <div class="col-md-6" *ngIf="updatedTasks | async as tasks">
+            <div *ngIf="tasks.length>0" class="card mt-3">
+                <div class="card-header text-white bg-warning">
+                    Completed Tasks 
+                </div>
+                <div class="card-body">
+                    <div class="m-5">
+                        <div class="row m-2 border border-primary p-2" *ngFor="let task of tasks">
+                            <div> {{task}}</div> 
                         </div>
                     </div>
                 </div>
@@ -16,3 +19,4 @@
         <div class="col-md-2"></div>
     </div>
 </div>
+

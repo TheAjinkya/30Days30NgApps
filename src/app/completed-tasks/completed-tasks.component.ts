@@ -1,34 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-completed-tasks',
   templateUrl: './completed-tasks.component.html',
   styleUrls: ['./completed-tasks.component.scss']
 })
-export class CompletedTasksComponent {
+export class CompletedTasksComponent implements OnInit{
  
-  updatedTasks: any[] = [];
-  subscription: Subscription;
+  updatedTasks!: Observable<any[]>;
 
-    constructor(private dataService: DataService) {
-        // subscribe to home component messages
-        console.log("Component loaded")
-        this.subscription = this.dataService.onTaskUpdated().subscribe(tasks => {
-          console.log("tasks:", tasks)
-            if (tasks) {
-                this.updatedTasks.push(tasks);
-            } else {
-                // clear messages when empty message received
-                this.updatedTasks = [];
-            }
-        });
-    }
+    constructor(private dataService: DataService) {}
 
-    ngOnDestroy() {
-        // unsubscribe to ensure no memory leaks
-        this.subscription.unsubscribe();
+    ngOnInit(): void {
+     this.updatedTasks = this.dataService.onTaskUpdated()
     }
 
 }
