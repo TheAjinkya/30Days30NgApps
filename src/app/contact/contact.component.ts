@@ -3,6 +3,7 @@ import { DataService } from '../services/data.service';
 import { User } from '../interfaces/users';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { MainStoreService } from '../services/main-store.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,7 +11,7 @@ import { map, catchError } from 'rxjs/operators';
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  constructor(private mainStoreService: MainStoreService) {}
 
   users$!: Observable<User[]>;
 
@@ -19,10 +20,10 @@ export class ContactComponent implements OnInit {
   }
 
   getAllData() {
-    this.users$ = this.dataService.getUsersData();
-    this.users$.subscribe((res: any) => {
-      console.log('getAllData res data', res);
-      return res;
-    });
+    this.users$ = this.mainStoreService.sendUsers();
+    // this.users$.subscribe((res: any) => {
+    //   console.log('getAllData res data', res);
+    //   return res;
+    // });
   }
 }

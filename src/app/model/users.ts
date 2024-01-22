@@ -1,4 +1,4 @@
-export interface Users {
+export interface IGitUsers {
   id: number;
   name: string;
   userName: string;
