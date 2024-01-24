@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/users';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private logger: LoggerService) {
+    this.getUsersData()
+  }
 
   private subject = new BehaviorSubject<any>([]);
 
@@ -26,8 +29,12 @@ export class DataService {
   }
 
   getUsersData(): Observable<User[]> {
+    this.logger.log("getUsersData method is called!")
+    debugger
     return this.http
       .get<User[]>('https://jsonplaceholder.typicode.com/users')
       .pipe(shareReplay());
   }
+
+  
 }
