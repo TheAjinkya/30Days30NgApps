@@ -12,6 +12,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CompletedTasksComponent } from './completed-tasks/completed-tasks.component';
 import { UnCompletedTasksComponent } from './un-completed-tasks/un-completed-tasks.component';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UnCompletedTasksComponent } from './un-completed-tasks/un-completed-tas
     QuizComponent,
     NavbarComponent,
     CompletedTasksComponent,
-    UnCompletedTasksComponent
+    UnCompletedTasksComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
