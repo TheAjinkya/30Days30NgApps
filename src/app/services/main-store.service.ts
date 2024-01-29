@@ -23,7 +23,7 @@ export class MainStoreService {
 
   private getAllUsers(): Observable<User[]> {
     this.loggerService.log("getAllUsers method is called!")
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users');
+    return this.http.get<User[]>('https://api.github.com/users');
   }
 
   private getAllGithubUsers() {}

@@ -8,7 +8,6 @@ export class LoggerService {
   constructor() { }
 
   log(string:String){
-    debugger;
     console.log(string)
   }
 

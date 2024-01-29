@@ -5,6 +5,7 @@ import {
   Output,
   SimpleChanges,
   EventEmitter,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
@@ -23,15 +24,34 @@ export class DashboardComponent implements OnInit {
   completedTaskList: any[] = [];
   selectedValue: boolean = false;
 
-  // message: Subscription;
-
   constructor(private dataService: DataService) {}
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.updateTaskList();
+    console.log('taskList', this.taskList);
+  }
+
+  updateTaskList() {
+    var items = localStorage.getItem('taskList');
+    if (items !== null) {
+      console.log('items', JSON.parse(items));
+      this.taskList = JSON.parse(items);
+    } else {
+      this.taskList.length = 0;
+    }
+  }
 
   addTask(taskName: any) {
     this.taskList.push(taskName);
     this.counter = this.counter + 1;
     this.task = `Task ${this.counter}`;
+    localStorage.setItem('taskList', JSON.stringify(this.taskList));
+    console.log('localStorage', localStorage);
+  }
+
+  deleteAll() {
+    localStorage.clear();
+    this.updateTaskList();
   }
 
   clearMessage() {
@@ -47,7 +67,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getCustomCss(taskName: any) {
-   
     if (this.completedTaskList.includes(taskName)) {
       return 'completedTask';
     } else {
@@ -57,5 +76,6 @@ export class DashboardComponent implements OnInit {
 
   deleteTask(taskName: any) {
     this.taskList = this.taskList.filter((task) => task !== taskName);
+    localStorage.setItem('taskList', JSON.stringify(this.taskList));
   }
 }

@@ -4,4 +4,6 @@ export interface User {
   username: string;
   website: string;
   id: number;
+  login: string;
+  avatar_url: string
 }

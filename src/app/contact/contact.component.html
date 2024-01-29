@@ -1,5 +1,31 @@
-Contact component
+<!-- Contact component
 
 <div *ngFor="let user of (users$ | async)">
     <div> {{user.name}}</div>
+</div> -->
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between mb-3">
+        <span>Github Users</span>
+    </div>
+    <div class="row g-2">
+        <div *ngFor="let user of (users$ | async)" class="col-md-3">
+            <div class="card p-2 py-3 text-center">
+                <div class="img mb-2">
+                    <img src="{{user.avatar_url}}" width="70" class="rounded-circle">
+                </div>
+                <h5 class="mb-0">{{user.login}}</h5>
+                <small>Neurosurgeon</small>
+                <div class="ratings mt-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="mt-4 apointment">
+                    <button class="btn btn-success text-uppercase">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

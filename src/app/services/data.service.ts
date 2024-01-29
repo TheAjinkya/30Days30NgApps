@@ -30,7 +30,6 @@ export class DataService {
 
   getUsersData(): Observable<User[]> {
     this.logger.log("getUsersData method is called!")
-    debugger
     return this.http
       .get<User[]>('https://jsonplaceholder.typicode.com/users')
       .pipe(shareReplay());
