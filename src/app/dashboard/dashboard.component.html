@@ -23,7 +23,7 @@
                     <div (click)="completedTask(task)" class="row m-2 border border-primary p-2" *ngFor="let task of taskList">
                         <div [ngClass]="getCustomCss(task)" class="col">
                             <!-- <input type="checkbox"/> -->
-                            {{task}}
+                            {{task.taskName}}
                         </div>
                         <div class="col">
                         
