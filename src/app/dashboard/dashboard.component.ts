@@ -43,14 +43,14 @@ export class DashboardComponent implements OnInit {
   }
 
   addTask(taskName: any) {
-    this.taskList.push({'taskName':taskName, completed: false});
+    this.taskList.push({ taskName: taskName, completed: false });
     this.counter = this.counter + 1;
     this.task = `Task ${this.counter}`;
-    this.saveToLocalhost(this.taskList)
+    this.saveToLocalhost(this.taskList);
     console.log('localStorage', localStorage);
   }
 
-  saveToLocalhost(taskList:any){
+  saveToLocalhost(taskList: any) {
     localStorage.setItem('taskList', JSON.stringify(taskList));
   }
 
@@ -65,36 +65,43 @@ export class DashboardComponent implements OnInit {
 
   completedTask(taskName: any) {
     this.selectedTaskName = taskName;
-   const duplicateName = this.completedTaskList.some(elm=>elm.taskName === taskName.taskName)
-   console.log("duplicateName", duplicateName)
+    const duplicateName = this.completedTaskList.some(
+      (elm) => elm.taskName === taskName.taskName
+    );
+    console.log('duplicateName', duplicateName);
     if (!duplicateName) {
-      this.completedTaskList.push({...taskName, completed: true});
+      this.completedTaskList.push({ ...taskName, completed: true });
       this.dataService.sendCompletedTasks(this.completedTaskList);
     }
 
-    const makeUncompleteTask = this.completedTaskList.find(elm=>(elm.taskName === taskName.taskName && elm.completed === true ))
-    console.log("makeUncompleteTask", makeUncompleteTask)
+    // const makeUncompleteTask = this.completedTaskList.find(
+    //   (elm) => elm.taskName === taskName.taskName && elm.completed === true
+    // );
+    // console.log('makeUncompleteTask', makeUncompleteTask);
 
-    if(makeUncompleteTask){
-      this.completedTaskList.push({...makeUncompleteTask, completed: false});
-      // this.dataService.sendCompletedTasks(this.completedTaskList);
-    }
-    console.log("completedTaskList", this.completedTaskList)
+    // if (makeUncompleteTask) {
+    //   this.completedTaskList = this.completedTaskList.map((el) => {
+    //     return { ...el, completed: false };
+    //   });
+    // }
+    console.log('completedTaskList', this.completedTaskList);
 
-    this.taskList = this.taskList.map(elm=>{
-      const updatedTask = this.completedTaskList.find(compElm=>compElm.taskName === elm.taskName)
-      if(updatedTask){
-        return updatedTask
-      }else{
-        return elm
+    this.taskList = this.taskList.map((elm) => {
+      const updatedTask = this.completedTaskList.find(
+        (compElm) => compElm.taskName === elm.taskName
+      );
+      if (updatedTask) {
+        return updatedTask;
+      } else {
+        return elm;
       }
-    })
-    this.saveToLocalhost(this.taskList)
-    console.log("updated TaskList", this.taskList)
+    });
+    this.saveToLocalhost(this.taskList);
+    console.log('updated TaskList', this.taskList);
   }
 
   getCustomCss(taskName: any) {
-    console.log("getCustomCss taskName", taskName)
+    console.log('getCustomCss taskName', taskName);
     if (taskName.completed) {
       return 'completedTask';
     } else {
